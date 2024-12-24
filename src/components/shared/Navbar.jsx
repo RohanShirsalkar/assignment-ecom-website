@@ -131,6 +131,14 @@ const Navbar = () => {
               CART
             </a>
           </li>
+          <li className="md:hidden py-2 px-4 md:py-0 md:px-6">
+            <a
+              onClick={() => navigate("/login")}
+              className="hover:text-gray-900 font-medium"
+            >
+              LOGIN
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
