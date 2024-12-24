@@ -6,7 +6,8 @@ import { AppContext } from "../../context/AppContext";
 
 const CartSlider = () => {
   const { user } = useContext(AppContext);
-  const { isCartOpen, closeCart, cart } = useContext(CartContext);
+  const { isCartOpen, closeCart, cart, removeItemFormCart } =
+    useContext(CartContext);
   const [isOpen, setIsOpen] = useState(true);
   const [cartItems, setCartItems] = useState([]);
 
@@ -101,7 +102,9 @@ const CartSlider = () => {
                 <div className="flex flex-col items-center">
                   <p className="font-bold mb-2">₹{item.price}</p>
                   <button
-                    onClick={handleWorkInProgress}
+                    onClick={() =>
+                      removeItemFormCart({ userId: user, productId: item.id })
+                    }
                     className="text-red-500 text-sm hover:underline"
                   >
                     Remove

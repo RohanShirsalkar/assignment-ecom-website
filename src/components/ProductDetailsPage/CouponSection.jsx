@@ -8,7 +8,7 @@ const CouponSection = ({ coupons }) => {
           <h3 className="font-bold mb-4">Best Offers</h3>
           {coupons?.map((coupon) => (
             <div
-              key={coupon.id}
+              key={coupon._id}
               onClick={() => alert("Work in progress...")}
               className="border rounded-md p-4 mb-4 bg-gray-50 hover:bg-gray-100"
             >

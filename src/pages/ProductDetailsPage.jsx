@@ -45,8 +45,9 @@ const details = [
 
 const ProductDetailsPage = () => {
   const { user } = useContext(AppContext);
-  const { addProductToCart } = useContext(CartContext);
+  const { addProductToCart, cart } = useContext(CartContext);
   const [product, setProduct] = useState({});
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [coupons, setCoupons] = useState([]);
   const [selectedSize, setSelectedSize] = useState("");
   const [loading, setLoading] = useState(false);
@@ -74,7 +75,20 @@ const ProductDetailsPage = () => {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    console.log(cart);
+    cart.productsInCart?.forEach((item) => {
+      if (item.productId === id) {
+        setIsAddedToCart(true);
+      }
+    });
+  }, [cart]);
+
   const handleAddToCart = () => {
+    if (isAddedToCart) {
+      toast("Product already added in cart");
+      return;
+    }
     addProductToCart({ userId: user, productId: product._id, quantity: 1 });
   };
 
@@ -88,7 +102,6 @@ const ProductDetailsPage = () => {
 
   return (
     <div className="container mx-auto py-8 px-4 lg:flex gap-8">
-      {/* Left Section - Images */}
       <div className="flex flex-col lg:w-2/3">
         <div className="border">
           <img src={product.img} alt="Main Product" className="w-full" />
@@ -105,10 +118,7 @@ const ProductDetailsPage = () => {
         </div> */}
       </div>
 
-      {/* Right Section - Product Details */}
       <div className="lg:w-2/3">
-        {/* Breadcrumb */}
-        {/* <p className="text-gray-600 text-sm mb-4">Home / {product.title}</p> */}
         <div className="text-gray-600 text-sm mb-4 mt-4 md:mt-0">
           <Link className="cursor-pointer hover:text-blue-500" to="/">
             Home
@@ -116,10 +126,8 @@ const ProductDetailsPage = () => {
           / {product.name}
         </div>
 
-        {/* Product Title */}
         <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
 
-        {/* Pricing */}
         <div className="flex items-center gap-4 mb-4">
           <p className="text-2xl font-semibold text-red-600">
             ₹{product.price}
@@ -148,17 +156,17 @@ const ProductDetailsPage = () => {
               </button>
             ))}
           </div>
-          {/* <a href="#" className="text-sm text-blue-500 mt-2 inline-block">
-            Size Chart
-          </a> */}
         </div>
 
-        {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
-          className="w-full bg-red-600 text-white py-3 rounded-md font-medium hover:bg-red-700 mb-6"
+          className={`w-full text-white py-3 rounded-md font-medium  mb-6 ${
+            isAddedToCart
+              ? "bg-green-500 hover:bg-green-700"
+              : "bg-red-600 hover:bg-red-700"
+          }`}
         >
-          ADD TO CART
+          {isAddedToCart ? "ADDED TO CART" : "ADD TO CART"}
         </button>
 
         <CouponSection coupons={coupons} />

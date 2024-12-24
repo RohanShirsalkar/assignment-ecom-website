@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import ProductCardSkeleton from "../shared/ProductCardSkeleton";
 import { useNavigate } from "react-router-dom";
 
-const NewArrivalsCollection = () => {
+const BestSellersCollection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,11 +26,12 @@ const NewArrivalsCollection = () => {
     };
     fetchData();
   }, []);
+
   return (
     <div className="container px-4 py-12 text-center  ">
       <div className="font-serif">
-        <h1 className="font-bold text-3xl ">NEW ARRIVALS</h1>
-        <h2 className="text-gray-500">Shop from the latest collection</h2>
+        <h1 className="font-bold text-3xl ">BEST SELLERS</h1>
+        <h2 className="text-gray-500">Shop from the best selling collection</h2>
       </div>
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-6 sm:px-4">
@@ -40,14 +41,14 @@ const NewArrivalsCollection = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:px-4 py-8">
-          {products?.slice(0, 4).map((product) => (
+          {products?.slice(4, 8).map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
       )}
       <div>
         <button
-          onClick={() => navigate("/all-products/category/new arrivals")}
+          onClick={() => navigate("/all-products/category/best sellers")}
           className="w-[150px] bg-red-600 text-white py-2 mt-4 rounded-lg hover:bg-red-700 transition-colors"
         >
           View All
@@ -57,4 +58,4 @@ const NewArrivalsCollection = () => {
   );
 };
 
-export default NewArrivalsCollection;
+export default BestSellersCollection;

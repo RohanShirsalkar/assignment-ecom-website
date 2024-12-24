@@ -9,3 +9,8 @@ export const findCartByUserId = async (userID) => {
   const response = await api.post(`/cart/get-cart`, userID);
   return response.data;
 };
+
+export const deleteById = async (data) => {
+  const response = await api.post(`/cart/delete-items`, data);
+  return response.data;
+};

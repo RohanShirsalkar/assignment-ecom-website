@@ -1,27 +1,27 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+
+const specifications = {
+  Fabric: "Cotton",
+  Pattern: "Printed",
+  Color: "Mustard",
+  Fit: "Regular Fit",
+  Occasion: "Festive",
+};
+
+const accordionData = [
+  {
+    title: "Description",
+    content:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos dolorem ab possimus rerum ea earum explicabo, omnis, hic accusantium iusto asperiores. Cupiditate, porro cumque! Reprehenderit, assumenda optio! Tempora numquam eligendi eum tempore.",
+  },
+  {
+    title: "Shipping Details",
+    content:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos dolorem ab possimus rerum ea earum explicabo, omnis, hic accusantium iusto asperiores. Cupiditate, porro cumque! Reprehenderit, assumenda optio! Tempora numquam eligendi eum tempore.",
+  },
+];
 
 const SpecificationAndDetailsSection = () => {
-  const specifications = {
-    Fabric: "Cotton",
-    Pattern: "Printed",
-    Color: "Mustard",
-    Fit: "Regular Fit",
-    Occasion: "Festive",
-  };
-
-  const accordionData = [
-    {
-      title: "Description",
-      content:
-        "This mustard suit set is crafted from high-quality cotton fabric, offering maximum comfort and elegance. Perfect for festive occasions and casual gatherings.",
-    },
-    {
-      title: "Shipping Details",
-      content:
-        "Free shipping on all orders. Orders are typically delivered within 5-7 business days for domestic shipments and 10-15 business days for international shipments.",
-    },
-  ];
-
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleAccordion = (index) => {
@@ -31,6 +31,7 @@ const SpecificationAndDetailsSection = () => {
   return (
     <div className="border-t mt-8 pt-6">
       {/* Specifications Section */}
+
       <h3 className="text-lg font-bold mb-4">Specifications</h3>
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-gray-300">
