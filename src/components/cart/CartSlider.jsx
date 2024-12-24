@@ -3,6 +3,7 @@ import { CartContext } from "../../context/CartContext";
 import toast from "react-hot-toast";
 import { findProductById } from "../../api/product.api";
 import { AppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const CartSlider = () => {
   const { user } = useContext(AppContext);
@@ -10,6 +11,8 @@ const CartSlider = () => {
     useContext(CartContext);
   const [isOpen, setIsOpen] = useState(true);
   const [cartItems, setCartItems] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchProductsByIds = async (items) => {
     try {
@@ -57,8 +60,9 @@ const CartSlider = () => {
     0
   );
 
-  const handleWorkInProgress = () => {
-    toast("Work in progress...");
+  const handleCheckout = () => {
+    navigate("/checkout");
+    closeCart();
   };
 
   return (
@@ -125,7 +129,7 @@ const CartSlider = () => {
               <p className="font-bold text-xl">₹{totalPrice}</p>
             </div>
             <button
-              onClick={handleWorkInProgress}
+              onClick={handleCheckout}
               className="w-full bg-gray-800 text-white py-3 rounded-md hover:bg-gray-700"
             >
               Checkout
