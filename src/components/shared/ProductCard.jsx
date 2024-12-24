@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
         <img
           src={product?.img}
           alt={product.name}
-          className="w-full h-64 object-cover rounded-t-lg"
+          className="w-full h-64 object-cover object-top rounded-t-lg"
           onClick={() => navigate(`/product/${product._id}`)}
         />
         {product.discount && (
