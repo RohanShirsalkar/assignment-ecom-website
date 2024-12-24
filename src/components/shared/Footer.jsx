@@ -1,7 +1,10 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const handleWorkInProgress = () => {
     toast("Work in progress...");
   };
@@ -22,17 +25,26 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
           <ul className="text-sm text-gray-400 space-y-2">
             <li>
-              <a onClick={handleWorkInProgress} className="hover:text-white">
+              <a
+                onClick={() => navigate("/all-products/category/new arrivals")}
+                className="hover:text-white"
+              >
                 New Arrivals
               </a>
             </li>
             <li>
-              <a onClick={handleWorkInProgress} className="hover:text-white">
+              <a
+                onClick={() => navigate("/all-products/category/best sellers")}
+                className="hover:text-white"
+              >
                 Best Sellers
               </a>
             </li>
             <li>
-              <a onClick={handleWorkInProgress} className="hover:text-white">
+              <a
+                onClick={() => navigate("/all-products/category/sale")}
+                className="hover:text-white"
+              >
                 Sale
               </a>
             </li>
